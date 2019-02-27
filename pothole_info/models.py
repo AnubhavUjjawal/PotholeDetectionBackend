@@ -15,6 +15,7 @@ class PotholeInfo(models.Model):
     lat  = models.DecimalField(max_digits=9, decimal_places=6)
     long = models.DecimalField(max_digits=9, decimal_places=6)
     img = models.ImageField(upload_to='pothole_info/images/')
+    added_on = models.DateTimeField(auto_now=True)
     danger_level = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)])
     user_feedback = models.TextField(blank=True, null=True)
 

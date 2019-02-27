@@ -12,5 +12,15 @@ class PotholeList(ListCreateAPIView):
     serializer_class = PotholeInfoSerializer
     paginate_by = 100
 
-    def get_queryset(self):
+    def get_queryset(self, pk=None):
+        if pk:
+            return PotholeInfo.objects.get(pk=pk)
         return PotholeInfo.objects.all()
+
+    def list(self, request, pk=None):
+        queryset = self.get_queryset(pk=pk)
+        if pk:
+            serializer = PotholeInfoSerializer(queryset)
+        else:
+            serializer = PotholeInfoSerializer(queryset, many=True)
+        return Response(serializer.data)
