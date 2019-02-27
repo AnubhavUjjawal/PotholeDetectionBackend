@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis',
     'rest_framework',
-    'rest_framework_gis',
     'pothole_info',
 ]
 
@@ -79,13 +77,8 @@ WSGI_APPLICATION = 'PotholeDetectionBackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.mysql',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'PotholeDetection',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
