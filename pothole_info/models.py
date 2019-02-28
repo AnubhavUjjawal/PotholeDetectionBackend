@@ -52,15 +52,18 @@ class PotholeInfo(models.Model):
 
     @classmethod
     def add_image_with_potholes(cls, sender, instance, **kwargs):
-        """Adds img_with_potholes_for_image before saving the image"""
-        headers = {'enctype': 'multipart/form-data'}
-        print(instance.img.path, instance.img.name)
-        r = requests.post(settings.TF_SERVER,
-                files={"pothole": open(instance.img.path, 'rb')})
-        file = PotholeInfo.create_img_with_potholes(instance, r.content)
-        f_name = instance.get_image_with_pothole_name()
-        PotholeInfo.objects.filter(pk=instance.pk).update(img_with_potholes=File(file, name=f_name))
-        file.close()
+        try:
+            """Adds img_with_potholes_for_image before saving the image"""
+            headers = {'enctype': 'multipart/form-data'}
+            # print(instance.img.path, instance.img.name)
+            r = requests.post(settings.TF_SERVER,
+                    files={"pothole": open(instance.img.path, 'rb')})
+            file = PotholeInfo.create_img_with_potholes(instance, r.content)
+            f_name = instance.get_image_with_pothole_name()
+            PotholeInfo.objects.filter(pk=instance.pk).update(img_with_potholes=File(file, name=f_name))
+            file.close()
+        except Exception:
+            pass
         
         
 
