@@ -7,4 +7,5 @@ class PotholeInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PotholeInfo
         fields = '__all__'
+        read_only = ['img_with_potholes']
 

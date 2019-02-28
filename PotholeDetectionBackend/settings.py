@@ -125,3 +125,7 @@ STATIC_ROOT = './static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+# HACKY TF SERVER IP URI TO GET POTHOLE DETECTION
+TF_SERVER = 'http://35.221.244.85/'
